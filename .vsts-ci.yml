@@ -97,16 +97,8 @@ steps:
     vsMajorVersion: 16
     channelName: int.$(InsertTargetBranchShortName)
     manifests: $(SetupManifests)
-    outputFolder: '$(Build.SourcesDirectory)\Binaries\$(BuildConfiguration)\Installer'
+    outputFolder: '$(Build.SourcesDirectory)\Binaries\VSSetup\$(BuildConfiguration)\Insertion'
   displayName: 'OPTPROF - Build VS bootstrapper'
-  condition: succeededOrFailed()
-
-# Publish bootstrapper to vsdrop
-- task: MicroBuildUploadVstsDropFolder@1
-  inputs:
-    DropFolder: '$(Build.SourcesDirectory)\Binaries\$(BuildConfiguration)\Installer'
-    DropName: 'Products/DevDiv/$(Build.Repository.Name)/$(Build.SourceBranchName)/$(Build.BuildNumber)'
-  displayName: OPTPROF - Publish bootstrap installer to VSTS drop
   condition: succeededOrFailed()
 
 # Publish run settings
