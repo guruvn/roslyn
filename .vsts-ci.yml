@@ -110,17 +110,6 @@ steps:
   displayName: 'OPTPROF - generate runsettings file'
   condition: succeededOrFailed()
 
-- task: ms-vscs-artifact.build-tasks.artifactDropTask-1.artifactDropTask@0
-  inputs:
-    dropServiceURI: 'https://devdiv.artifacts.visualstudio.com'
-    buildNumber: 'RunSettings/$(Build.Repository.Name)/$(Build.SourceBranchName)/$(Build.BuildNumber)'
-    sourcePath: '$(Build.SourcesDirectory)\Binaries\$(BuildConfiguration)\DevDivInsertionFiles\RunSettings'
-    toLowerCase: false
-    usePat: false
-    dropMetadataContainerName: RunSettings
-  displayName: 'OPTPROF - Publish to Artifact Services - RunSettings'
-  condition: succeededOrFailed()
-
 # Publish bootstrapper info
 - task: PublishBuildArtifacts@1
   inputs:

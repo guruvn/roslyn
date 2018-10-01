@@ -13,12 +13,12 @@ try {
     Write-Host "Binaries Dir $binariesDir"
     
     $buildConfiguration = if ($release) { "Release" } else { "Debug" }
-    $configDir = Join-Path $binariesDir $buildConfiguration
+    $configDir = Join-Path (Join-Path $binariesDir "VSSetup") $buildConfiguration
     
     $optProfToolDir = Get-PackageDir "Roslyn.OptProf.RunSettings.Generator"
     $optProfToolExe = Join-Path $optProfToolDir "tools\roslyn.optprof.runsettings.generator.exe"
     $configFile = Join-Path $repoDir "build\config\optprof.json"
-    $outputFolder = Join-Path $configDir "DevDivInsertionFiles\RunSettings"
+    $outputFolder = Join-Path $configDir "Insertion\RunSettings"
     $optProfArgs = "--configFile $configFile --outputFolder $outputFolder"
     
     Exec-Console $optProfToolExe $optProfArgs
